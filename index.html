@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Village Cricket Scorer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="scoreboard" aria-label="Cricket scorer">
+        <div class="match-bar">
+          <div>
+            <p class="eyebrow">Village Cricket Scorer</p>
+            <h1 id="matchTitle">Set up match</h1>
+            <p class="save-status" id="saveStatus">Not connected</p>
+          </div>
+          <button class="ghost-button" id="resetMatch" type="button">Reset</button>
+        </div>
+
+        <form class="setup-panel" id="setupForm">
+          <label>
+            Team batting first
+            <input id="teamA" name="teamA" type="text" placeholder="e.g. Shivneri XI" required />
+          </label>
+          <label>
+            Team batting second
+            <input id="teamB" name="teamB" type="text" placeholder="e.g. Mavla Stars" required />
+          </label>
+          <label>
+            Overs
+            <input id="maxOvers" name="maxOvers" type="number" min="1" max="50" value="5" required />
+          </label>
+          <button type="submit">Start Match</button>
+        </form>
+
+        <div class="scorer" id="scorer" hidden>
+          <section class="hero-score" aria-live="polite">
+            <div>
+              <p class="eyebrow" id="inningsLabel">1st innings</p>
+              <h2 id="battingTeam">Team</h2>
+              <p class="target-line" id="targetLine">First innings</p>
+            </div>
+            <div class="score-total">
+              <span id="runs">0</span>/<span id="wickets">0</span>
+            </div>
+            <div class="meta-grid">
+              <div>
+                <span>Overs</span>
+                <strong id="overs">0.0</strong>
+              </div>
+              <div>
+                <span>Run rate</span>
+                <strong id="runRate">0.00</strong>
+              </div>
+              <div>
+                <span>Balls</span>
+                <strong id="balls">0</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="controls-band" aria-label="Scoring controls">
+            <div class="control-group">
+              <p>Runs</p>
+              <div class="button-grid six">
+                <button type="button" data-action="run" data-runs="0">0</button>
+                <button type="button" data-action="run" data-runs="1">1</button>
+                <button type="button" data-action="run" data-runs="2">2</button>
+                <button type="button" data-action="run" data-runs="3">3</button>
+                <button type="button" data-action="run" data-runs="4">4</button>
+                <button type="button" data-action="run" data-runs="6">6</button>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <p>Extras</p>
+              <div class="button-grid four">
+                <button type="button" data-action="extra" data-kind="wide">Wide</button>
+                <button type="button" data-action="extra" data-kind="noball">No ball</button>
+                <button type="button" data-action="extra" data-kind="bye">Bye</button>
+                <button type="button" data-action="extra" data-kind="legbye">Leg bye</button>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <p>Match</p>
+              <div class="button-grid four">
+                <button class="danger" type="button" data-action="wicket">Wicket</button>
+                <button type="button" id="undoButton">Undo</button>
+                <button type="button" id="inningsButton">End innings</button>
+                <button type="button" id="newInningsButton" hidden>Next innings</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="summary-band" aria-label="Score summary">
+            <div>
+              <span>Boundaries</span>
+              <strong id="boundaries">0 fours, 0 sixes</strong>
+            </div>
+            <div>
+              <span>Extras</span>
+              <strong id="extras">0</strong>
+            </div>
+            <div>
+              <span>Last ball</span>
+              <strong id="lastBall">-</strong>
+            </div>
+          </section>
+
+          <section class="timeline" aria-label="Ball by ball">
+            <div class="section-title">
+              <h3>Ball by ball</h3>
+              <span id="overHint">Current over</span>
+            </div>
+            <ol id="ballLog"></ol>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
